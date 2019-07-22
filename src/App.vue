@@ -1,25 +1,34 @@
 <template>
     <div id="app" class="foo">
       <h1>Test Results</h1>
+      <div v-if=isMobile>
+          <app-mobile-select />
+      </div>
+      <div v-else>DESKTOP</div>
       <app-cards :cardData="cardData" />
     </div>
 </template>
 
 <script>
   import AppCards from '@/components/AppCards.vue'
+  import AppMobileSelect from '@/components/AppMobileSelect.vue'
+  import { isMobile } from 'mobile-device-detect'
 
   export default {
     name: 'app',
     components: {
       AppCards,
+      AppMobileSelect,
     },
     data() {
       return {
-        cardData: []
+        cardData: [],
+        isMobile
       }
     },
     mounted() {
       this.getCards()
+      //const isMobile = isMobile
     },
     methods: {
       async getCards() {

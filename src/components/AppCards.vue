@@ -2,11 +2,11 @@
     <div class="card-grid">
           <p v-if="cardData.length < 1" class="no-card-data-found">
               No card data loaded.
-            </p>
+        </p>
         <div class="card--body" v-for="card in cardData" :key="card.id">
           <img :src="card.image" v-bind:alt="`${ card.title }`">
           <p class="card--body__title">{{ card.title }}</p>
-          <p class="card--body__description">{{ card.description | truncate(200, '...') }}</p>
+          <p class="card--body__description">{{ card.description }}</p>
         </div>
     </div>
 </template>
@@ -15,10 +15,10 @@
     export default {
         name: 'app-cards',
         props: {
-            cardData: Array
+            cardData: Array,
         },
         data() {
-            return {}
+            
         },
         methods: {
 
@@ -27,6 +27,7 @@
             truncate: function (text, length, suffix) {
                 return text.substring(0, length) + suffix
             },
+            /* usage: {{ text | truncate(250, '...') }}  Interesting approach, but probably not the best */
         },
     }
 </script>
@@ -41,6 +42,7 @@
     .card--body {
         height: 280px;
         width: 215px;
+        margin:10px;
         border: 1px solid #f00;
         overflow: hidden;
     }
@@ -51,14 +53,33 @@
     }
 
     .card--body__description {
+        margin: 10px;
         font-size: .75em;
         text-align: left;
         overflow: hidden;
-        hyphens: auto;
-        text-overflow: ellipsis;
-        margin: 10px;
-        line-clamp: 6;
-        -webkit-line-clamp: 6;
+        position: relative;
+        line-height: 1.2em;
+        max-height: 7em;
+        /* margin-right: -1em; */
+        padding-right: 1em;
+    }
+
+    .card--body__description:before {
+        content: '...';
+        position: absolute;
+        right: 1em; 
+        background-color: #fff;
+        bottom: 0;
+    }
+
+    .card--body__desciption:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: #fff;
     }
 
 
