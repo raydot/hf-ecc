@@ -28,20 +28,22 @@
             AppCategorySelectorDesktop,
         },
         data: function() {
-            // This could optionally be populated from REST or whatever
+            // Options could be populated from REST or similar,
+            // or even dynamically derived from the JSON itself.
             return {
                 isMobile: isMobile,
                 options: ['AEM', 'ANALYTICS', 'UX', 'INFORMATION ARCHITECTURE', 'VISUAL DESIGN', 'SITECORE', 'CX STRATEGY', 'ADOBE DAM', 'TAXONOMY', 'PHOTOGRAPHY', 'ADOBE ANALYTICS'],
-                propsList: [],
+                filterList: [],
             }
         },
         methods: {
+            // Add / remove selected items to the filter
             toggleprop: function(whichProp) {
-                var index = this.propsList.indexOf(whichProp)
+                var index = this.filterList.indexOf(whichProp)
                 index === -1
-                    ? this.propsList.push(whichProp)
-                    : this.propsList.splice(index, 1)
-                this.$emit('update-selection', this.propsList)
+                    ? this.filterList.push(whichProp)
+                    : this.filterList.splice(index, 1)
+                this.$emit('update-selection', this.filterList)
             }
         }
     }

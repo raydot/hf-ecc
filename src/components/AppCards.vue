@@ -45,6 +45,7 @@
         height: 280px;
         width: 215px;
         margin:10px;
+        float: left;
         border: 1px solid #f00;
         overflow: hidden;
     }

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    // This might be overkill, but I was having trouble keeping the data separate
+    // This component might be overkill, but I was having trouble keeping the data separate
     // while creating the buttons in the component that displays them.
     // This also solves the problem of having to query the html for the button value.  
     // Bonus: reusable!
