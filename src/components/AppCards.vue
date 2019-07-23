@@ -17,8 +17,10 @@
         props: {
             cardData: Array,
         },
-        data() {
-            
+        data: function() {
+            return {
+
+            }
         },
         methods: {
 

@@ -1,5 +1,3 @@
-
-
 <template>
     <div>
         <div class="mobileMenu" v-if="isMobile">
@@ -19,17 +17,6 @@
 
 <script>
 
-    /*
-        This component was doing way too much and has been split up into three components.
-
-        AppCategorySelector
-            |- AppCategorySelectorDesktop
-            |- AppCategorySelectorMobile
-
-        This component is no longer in use.
-    */
-
-
     import Multiselect from 'vue-multiselect'
     export default {
         name: 'app-mobile-select',
@@ -37,9 +24,9 @@
         data: {
             active: true,
             //return {
-                value: null,
+                //value: null,
                 isMobile: false,
-                options: ['AEM', 'ANALYTICS', 'UX', 'INFORMATION ARCHITECTURE', 'VISUAL DESIGN', 'SITECORE', 'CX STRATEGY', 'ADOBE DAM', 'TAXONOMY', 'PHOTOGRAPHY', 'ADOBE ANALYTICS'],
+                ,
             //}
         },
         methods: {
