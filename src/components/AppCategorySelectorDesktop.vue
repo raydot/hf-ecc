@@ -26,9 +26,11 @@
                 
             }  
         },
-        events: {
-            toggleprop: function(whichProp) {
-                alert(whichProp)
+        methods: {
+            // Admittedly, double-emit from grandchild to grandparent isn't ideal,
+            // but Vuex seems like overkill.
+            toggleprop(whichProp) {
+                this.$emit('toggleprop', whichProp)
             }
         } 
     }

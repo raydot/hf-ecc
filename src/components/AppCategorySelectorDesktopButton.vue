@@ -23,7 +23,7 @@
         },
         methods: {
             handleClick: function() {
-                // Toggle the click and emit
+                // Toggle the click and emit values to AppCategorySelector
                 this.isActive = !this.isActive
                 this.$emit('toggleprop', this.option)
             }

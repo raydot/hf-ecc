@@ -1,3 +1,8 @@
+<!--
+    THIS HAS BEEN BROKEN UP INTO SEVERAL COMPONENTS BUT IS NO LONGER USED.
+    KEEPING FOR REFERENCE.
+-->
+
 <template>
     <div>
         <div class="mobileMenu" v-if="isMobile">

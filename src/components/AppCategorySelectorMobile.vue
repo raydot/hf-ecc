@@ -7,6 +7,7 @@
                 :options="options"
                 :close-on-select="false"
                 :multiple="true"
+                @select="handleSelect"
             ></multiselect>
         </div>
     </div>
@@ -14,6 +15,7 @@
 
 <script>
     // Mobile category selection component using the vue-multiselect node module
+    // https://vue-multiselect.js.org/
     import Multiselect from 'vue-multiselect'
 
     export default {
@@ -22,7 +24,13 @@
         components: { Multiselect },
         data: function(){
             return {
-                value: '',
+                values: '',
+            }
+        },
+        methods: {
+            handleSelect: function() {
+                // Emit selector values to AppCategorySelector
+                this.$emit('toggleprop', this.values)
             }
         }
     }
