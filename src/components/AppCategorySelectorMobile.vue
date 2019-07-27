@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h3>MOBILE</h3>
         <div class="mobileMenu">
             <multiselect 
                 v-model="value" 

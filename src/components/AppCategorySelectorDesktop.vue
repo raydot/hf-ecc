@@ -1,9 +1,9 @@
 <template>
     <div class="desktopMenu--items">
-        <h3>DESKTOP</h3>
         <span
-            v-for="option in options"
-            v-bind:key="option"
+            v-for="(option, index) in options"
+            :option="option"
+            :key="index"
         >
             <app-category-selector-desktop-button :option="option" v-on:toggleprop="toggleprop" />
         </span>
@@ -29,6 +29,7 @@
         methods: {
             // Admittedly, double-emit from grandchild to grandparent isn't ideal,
             // but Vuex seems like overkill.
+            // OOF!  I realized I can just use $root after I set this up.
             toggleprop(whichProp) {
                 this.$emit('toggleprop', whichProp)
             }

@@ -2,7 +2,7 @@
     <div id="app" class="foo">
       <h1>Test Results</h1>
       <div>
-          <app-category-selector v-on:updateSelection="updateSelection" />
+          <app-category-selector :options="options"/>
       </div>
       <app-cards :cardData="cardData" />
     </div>
@@ -20,7 +20,8 @@
     },
     data() {
       return {
-        cardData: [],
+        cardData: [], // hold the list of cards
+        options: ['AEM', 'ANALYTICS', 'UX', 'INFORMATION ARCHITECTURE', 'VISUAL DESIGN', 'SITECORE', 'CX STRATEGY', 'ADOBE DAM', 'TAXONOMY', 'PHOTOGRAPHY', 'ADOBE ANALYTICS'], // set / hold the selection options
       }
     },
     mounted() {
@@ -37,9 +38,9 @@
           alert(error) // Or somehow handle the error.
         }
       },
-      updateSelection() {
-        alert('UPDATE!')
-      }
+      // toggleapp(filterList) {
+      //   alert('xx', filterList)
+      // },
     }
   }
 </script>

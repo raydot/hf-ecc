@@ -1,13 +1,33 @@
 <template>
     <div class="card-grid">
-          <p v-if="cardData.length < 1" class="no-card-data-found">
+        <p v-if="cardData.length < 1" class="no-card-data-found">
               No card data loaded.
         </p>
-        <div class="card--body" v-for="card in cardData" :key="card.id">
-          <img :src="card.image" v-bind:alt="`${ card.title }`">
-          <p class="card--body__title">{{ card.title }}</p>
-          <p class="card--body__description">{{ card.description }}</p>
-        </div>
+            <div  v-if="filterList.length > 0">
+            <div
+            class="card--body selected-cards" 
+            v-for="(card, index) in cardsToShow"
+            :key="index"
+            >
+            <img :src="card.image" v-bind:alt="`${ card.title }`">
+            <p class="card--body__title">{{ card.title }}</p>
+            <p class="card--body__description">{{ card.description }}</p>
+            </div>
+            </div>
+
+            <div v-else>
+            <div
+                class="card--body selected-cards" 
+                v-for="(card, index) in cardData"
+                :key="index"
+            >
+
+            <img :src="card.image" v-bind:alt="`${ card.title }`">
+            <p class="card--body__title">{{ card.title }}</p>
+            <p class="card--body__description">{{ card.description }}</p>
+            </div>
+            </div>
+
     </div>
 </template>
 
@@ -19,14 +39,41 @@
         },
         data: function() {
             return {
-
+                // this.$root to the rescue!
+                filterKey: "tags",
+                filterList: [],
             }
         },
-        methods: {
+        computed: {
+            cardsToShow() {
+                // A little kludgy because not exact correspondence between the
+                // tags and the searchable items.
+
+                return this.cardData.filter(card => {
+                    let foo = card.tags.map(item => item.toUpperCase())
+                    return (this.filterList.some(item => foo.includes(item)))
+                })
+            }
 
         },
-        filters: {
-            truncate: function (text, length, suffix) {
+        methods: {
+            matcher: function(whichCard) {
+                // NOT USED
+                return (this.filterList.some(item => whichCard.includes(item)))
+            }
+        },
+        mounted() {
+            this.$root.$on('toggleapproot', (incomingFilterList) => {
+                this.filterList = incomingFilterList
+            })
+        },
+
+        filters: {            
+            // selectedCards: function(arr1, arr2) {
+            //     return (arr2.some(item => arr1.includes(item)))
+            // },
+
+            truncate: function (text, length, suffix) { // not used
                 return text.substring(0, length) + suffix
             },
             /* usage: {{ text | truncate(250, '...') }}  Interesting approach, but probably not the best */

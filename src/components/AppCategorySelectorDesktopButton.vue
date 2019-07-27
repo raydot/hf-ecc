@@ -1,11 +1,11 @@
 <template>
-        <span
+        <button
             class="desktopMenu--items"
             v-bind:class="{ active: isActive }"
             @click="handleClick"
         >
             {{ option }}
-        </span>
+        </button>
 </template>
 
 <script>
